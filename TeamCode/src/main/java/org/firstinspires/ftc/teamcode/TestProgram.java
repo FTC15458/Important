@@ -41,13 +41,29 @@ public class TestProgram extends LinearOpMode {
       brMotor.setDirection(DcMotor.Direction.REVERSE);
 
       while (opModeIsActive() && eTimeSeconds() < 1) {
-        flMotor.setpower(-1);
+        flMotor.setpower(1);
         frMotor.setpower(1);
         blMotor.setpower(1);
-        brMotor.setpower(-1);
+        brMotor.setpower(1);
       }
-      
+
+     eTime.reset();
+
+      while (opModeIsActive() && eTimeSeconds() < 1) {
+        flMotor.setpower(1);
+        frMotor.setpower(-1);
+        blMotor.setpower(1);
+        brMotor.setpower(-1);
+      }   
+     while (opModeIsActive() && eTimeSeconds() < .75) {
+        flMotor.setpower(1);
+        frMotor.setpower(1);
+        blMotor.setpower(1);
+        brMotor.setpower(1);
     }
+     while (opModeIsActive() && eTimeSeconds() < 1) {
+        leftServo.setposition(-0.75);
+        rightServo.setposition(0.75);
   }
 
       

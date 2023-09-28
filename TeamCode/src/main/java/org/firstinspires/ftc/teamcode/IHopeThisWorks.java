@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.hardware.DcMotor;
 @Autonomous
 
-public class TestProgram extends LinearOpMode {
+public class IHopeThisWorks extends LinearOpMode {
     private ElapsedTime eTime = new ElapsedTime();   
     private DcMotor flMotor = null;
     private DcMotor frMotor = null;
@@ -49,18 +49,24 @@ public class TestProgram extends LinearOpMode {
 
      eTime.reset();
 
-      while(opModeIsActive() && eTimeSeconds() < 1) {
+    while(opModeIsActive() && eTimeSeconds() < 1) {
         flMotor.setpower(1);
         frMotor.setpower(-1);
         blMotor.setpower(1);
         brMotor.setpower(-1);
       }   
+
+    eTime.reset();
+        
      while (opModeIsActive() && eTimeSeconds() < .75) {
         flMotor.setpower(1);
         frMotor.setpower(1);
         blMotor.setpower(1);
         brMotor.setpower(1);
     }
+
+    eTime.reset();
+        
      while (opModeIsActive() && eTimeSeconds() < 1) {
         leftServo.setposition(-0.75);
         rightServo.setposition(0.75);

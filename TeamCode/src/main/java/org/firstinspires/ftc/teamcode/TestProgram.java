@@ -40,7 +40,7 @@ public class TestProgram extends LinearOpMode {
       blMotor.setDirection(DcMotor.Direction.FORWARD);
       brMotor.setDirection(DcMotor.Direction.REVERSE);
 
-      while (opModeIsActive() && eTimeSeconds() < 1) {
+      while(opModeIsActive() && eTimeSeconds() < 1) {
         flMotor.setpower(1);
         frMotor.setpower(1);
         blMotor.setpower(1);
@@ -49,7 +49,7 @@ public class TestProgram extends LinearOpMode {
 
      eTime.reset();
 
-      while (opModeIsActive() && eTimeSeconds() < 1) {
+      while(opModeIsActive() && eTimeSeconds() < 1) {
         flMotor.setpower(1);
         frMotor.setpower(-1);
         blMotor.setpower(1);
@@ -64,6 +64,18 @@ public class TestProgram extends LinearOpMode {
      while (opModeIsActive() && eTimeSeconds() < 1) {
         leftServo.setposition(-0.75);
         rightServo.setposition(0.75);
+    }
+        
+    eTime.reset();
+
+     while(opModeIsActive() && eTimeSeconds() < 0.5) {
+         flMotor.setpower(1);
+         frMotor.setpower(1);
+         blMotor.setpower(1);
+         brMotor.setpower(1);
+    }
+        //going to add some other code later, hopefully, we will be able to pick up some new pixels to help with scoring of points for our alliance
+   }
   }
 
       

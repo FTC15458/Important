@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.hardware.DcMotor;
 @Autonomous
 
-public class IHopeThisWorks extends LinearOpMode {
+public class GreenMachineAuto extends LinearOpMode {
     private ElapsedTime eTime = new ElapsedTime();   
     private DcMotor flMotor = null;
     private DcMotor frMotor = null;

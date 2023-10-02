@@ -80,8 +80,9 @@ public class GreenMachineAuto extends LinearOpMode {
          blMotor.setpower(1);
          brMotor.setpower(1);
     }
-//going to add some other code later, hopefully, we will be able to pick up some new pixels to help with scoring of points for our alliance
-    eTime.reset();
+//going to add some other code later :D
+        
+   eTime.reset();
    }
   }
 

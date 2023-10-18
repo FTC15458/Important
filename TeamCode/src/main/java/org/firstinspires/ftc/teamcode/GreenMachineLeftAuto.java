@@ -44,8 +44,8 @@ public class GreenMachineLeftAuto extends LinearOpMode {
       waitForStart();
 
       frMotor.setPower(1);
-      flMotor.setPower(1);
-      brMotor.setPower(1);
+      flMotor.setPower(-1);
+      brMotor.setPower(-1);
       blMotor.setPower(1);
       sleep(1000);
    }

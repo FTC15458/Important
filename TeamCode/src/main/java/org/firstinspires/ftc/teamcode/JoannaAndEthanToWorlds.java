@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 //import com.qualcomm.robotcore.eventloop.opmode.IterativeOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
+//import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 //import com.qualcomm.robotcore.eventloop.opmode.IterativeOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.CRServo;
@@ -16,7 +16,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 
 @TeleOp(name="GaryToWorlds", group="Iterative Opmode")
-// @Disabled
+
 public class JoannaAndEthanToWorlds extends OpMode {
 
     // Declare OpMode members.
@@ -31,6 +31,11 @@ public class JoannaAndEthanToWorlds extends OpMode {
     private Servo rightServo = null;
     private Servo rotateServo = null;
     private ElapsedTime eTime = new ElapsedTime();
+    private double[] leftServoPositions = {0.0, 0.2, 1.0};
+    private int currentServoIndex = 0;
+    private boolean currentY;
+    private boolean lastY;
+
 
     @Override
     public void init() {
@@ -98,10 +103,15 @@ public class JoannaAndEthanToWorlds extends OpMode {
 
         // POV Mode uses left stick to go forward, and right stick to turn.
         // - This uses basic math to combine motions and is easier to drive straight.
-        double drive = -gamepad1.left_stick_x;
-        double turn  =  gamepad1.left_stick_y;
+        double drive = -gamepad1.left_stick_y;
+        double turn  =  gamepad1.right_stick_x;
         leftPower    = Range.clip(drive + turn, -1.0, 1.0) ;
         rightPower   = Range.clip(drive - turn, -1.0, 1.0) ;
+
+        flDrive.setPower(leftPower);
+        frDrive.setPower(rightPower);
+        blDrive.setPower(leftPower);
+        brDrive.setPower(rightPower);
 
 
         // Tank Mode uses one stick to control each wheel.
@@ -113,17 +123,23 @@ public class JoannaAndEthanToWorlds extends OpMode {
 
         //drives chasis
         if (gamepad1.right_stick_x > 0.6){
-            flDrive.setPower(-1);
+            flDrive.setPower(1);
             frDrive.setPower(-1);
-            blDrive.setPower(1);
+            blDrive.setPower(-1);
             brDrive.setPower(1);
         }
         else if (gamepad1.right_stick_x < -0.6){
-            flDrive.setPower(1);
+            flDrive.setPower(-1);
             frDrive.setPower(1);
-            blDrive.setPower(-1);
+            blDrive.setPower(1);
             brDrive.setPower(-1);
         }
+        // else if (gamepad1.left_stick_y > 0.6) {
+        //     flDrive.setPower(1);
+        //     frDrive.setPower(1);
+        //     blDrive.setPower(1);
+        //     brDrive.setPower(1);
+        // }
         else{
             flDrive.setPower(leftPower);
             frDrive.setPower(rightPower);
@@ -144,7 +160,7 @@ public class JoannaAndEthanToWorlds extends OpMode {
 
         // Show the elapsed game time and wheel power.
         telemetry.addData("Status", "Run Time: " + runtime.toString());
-        telemetry.addData("Motors", "left (%.2f), right (%.2f)", leftPower, rightPower);
+        //telemetry.addData("Motors", "left (%.2f), right (%.2f)", leftPower, rightPower);
 
 
 
@@ -159,18 +175,20 @@ public class JoannaAndEthanToWorlds extends OpMode {
             rightServo.setPosition(0.65);//0.6 is ideal open
         }
 
+        currentY = gamepad2.y;
         //rotateServo rotates
-    /*   if (gamepad2.y && !lastY) {
-           currentServoIndex++;
-           rotateServo.setPosition(currentServoIndex % 3);
-    }
-
+        if (currentY && !lastY) {
+            rotateServo.setPosition(leftServoPositions[currentServoIndex % 3]);
+            currentServoIndex++;
+        }
+    /*
         //only use when putting on claw
         //leftServo.setPosition(0);
         //rightServo.setPosition(1);
-       // lastY = gamepad2.y;
-    }
-*/
+
+    } */
+        lastY = gamepad2.y;
+
 
     }
 }
